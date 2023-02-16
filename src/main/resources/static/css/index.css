@@ -1,0 +1,325 @@
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600);
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Oswald:wght@300&family=Raleway:wght@100&family=Roboto+Condensed:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Oswald:wght@300&family=Raleway:wght@100&family=Roboto+Condensed:ital@1&display=swap');
+@font-face {
+    font-family: Amatic-bold;
+    src: url("/font/Amatic-Bold.ttf");
+    
+}
+@font-face {
+  font-family: 'Jua', sans-serif;
+  src: url("/font/Jua-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Gamja Flower', cursive;
+  src: url("/font/GamjaFlower-Regular.ttf");
+}
+
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'codropsicons';
+  src: url("../fonts/codropsicons/codropsicons.eot");
+  src: url("../fonts/codropsicons/codropsicons.eot?#iefix") format("embedded-opentype"), url("../fonts/codropsicons/codropsicons.woff") format("woff"), url("../fonts/codropsicons/codropsicons.ttf") format("truetype"), url("../fonts/codropsicons/codropsicons.svg#codropsicons") format("svg");
+}
+
+
+/* 배경 설정 */
+body {
+	
+	font-family: 'Roboto', sans-serif;
+	/* 배경색 변경 필요 */
+	background: 
+			url("/images/203518.jpg")
+		no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: auto;
+	height : 500px;
+	
+}
+
+/* 로그인 박스 설정 */
+.login-box {
+	margin-top: 75px;
+	border-radius:12px;
+	/* width :  
+	height: auto; */
+	/* background-color:#ddd; */				/* 로그인 박스 색상 설정 */
+	text-align: center;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0), 0 3px 6px black; 
+	min-width: 350px;
+	width : 350px;
+	display : block;
+	margin : auto;
+	margin-left : 10%;
+	margin-right : 54px;
+	
+	
+}
+
+
+.login-key {
+	height: 100px;
+	font-size: 80px;
+	line-height: 100px;
+	background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+/* 안바꿔도 됨 */
+.login-title {
+	
+	margin-top: 15px;
+	text-align: center;
+	font-size: 30px;
+	letter-spacing: 2px;
+	margin-top: 15px;
+	font-weight: bold;
+	color: #ECF0F5;
+}
+
+/* 로그인 창 안에 텍스트 수정 (이메일, 비밀번호) */
+.login-form {
+	margin-top: 25px;
+	text-align: center;
+}
+
+/* 인풋(회원가입 폼, 인덱스 페이지 둘 다 적용) */
+input[type] {
+	font-family: 'Gamja Flower', cursive;					/* 로그인 박스 폰트 설정  */
+	/* font-weight: bold;	 */					/* 폰트 굵기 설정 */
+	background-color: #1A2226;
+	border: none;
+	/* border-bottom: 2px solid rgb(128, 255, 128); */
+	border-top: 0px;
+	border-radius: 10px;
+	outline: 0;
+	margin-bottom: 20px;
+	padding-left: 7px;
+	color: #ECF0F5;
+	
+}
+
+
+
+.form-group {
+	/* margin-bottom: 40px; */
+	outline: 0px;
+	/* margin:auto; */
+	width:350px;
+}
+
+/* 인풋박스 포커스 시 */
+.form-control:focus {
+	border-color: inherit;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	/* border-bottom: 2px solid #7e7f73; */
+	outline: 0;
+	background-color: #1A2226;
+	color: #ECF0F5;
+}
+
+input:focus {
+	outline: none;
+	box-shadow: 0 0 0;
+}
+
+
+
+/* 로그인 폼 컨트롤 */
+.form-group .form-control-label {
+	font-size: 14px;
+	font-family: 'Gamja Flower', cursive;
+	font-weight : bold;
+	
+	color: black;
+	letter-spacing: 1px;
+}
+
+/* .btn-outline-primary {
+	border-color: #0DB8DE;
+	color: #0DB8DE;
+	border-radius: 0px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.btn-outline-primary:hover {
+	background-color: #0DB8DE;
+	right: 0px;
+} */
+
+.login-btm {
+	float: left;
+}
+
+.login-button {
+	padding-right: 0px;
+	text-align: right;
+	margin-bottom: 25px;			/*버튼과 로그인 박스 하단 간격  */
+	margin-left : 5px;
+}
+
+
+
+.loginbttm {
+	padding: 0px;
+}
+
+
+
+.hidden {
+  opacity:0;
+}
+/* 인덱스 페이지에 텍스트 써졌다가 지웠다가 하는 그거 위치설정 */
+.console-container {
+  font-family: amatic-bold;
+  font-size:2em;
+  text-align:center;
+  height:10px;
+  width:200px;
+  display:block;
+  color:white;
+  margin-left:12%;
+  margin:auto;
+  letter-spacing: -0.5px;
+}
+/* 건드릴 필요없음 */
+.console-underscore {
+  display:inline-block;
+  position:relative;
+  top:0;
+  left:10px;
+}
+
+#emailModal.modal-overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(3px);
+	-webkit-backdrop-filter: blur(1.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	
+}
+
+#emailModal #close-area {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	cursor: pointer;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+#emailModal .modal-window {
+	
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(13.5px);
+	-webkit-backdrop-filter: blur(13.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	width: 300px;
+	height: 150px;
+	position: relative;
+	top:0px;
+	padding: 10px;
+	
+}
+
+
+/* 로그인 화면 버튼 셋팅 */
+.btn-outline-secondary {
+	--bs-btn-color: #e18585;			/* 예비색상 #100e0e, #543e3e, #855050, #ffffff */
+    --bs-btn-border-color: #caaad3;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #dab8e7a8;
+    --bs-btn-hover-border-color: #6c757d;
+    --bs-btn-focus-shadow-rgb: 108,117,125;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #6c757d;
+    --bs-btn-active-border-color: #6c757d;
+    --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #6c757d;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #6c757d;
+    --bs-gradient: none; 
+    --bs-btn-border-width: 2px;
+    margin-bottom: 30px;
+	width: 80px;
+	margin-left: 15px;
+	margin-right: 5px;
+	font-size : 13px;
+}
+
+.btn{
+/* 	padding-left : 5%; */
+	
+	font-weight :bold;
+	/* font-size : 12px */
+}
+
+/* 로그인 버튼 개별 설정   */
+.btn-login{
+	width: 85.425px;
+	text-align: center;
+}
+
+/* 로그인 버튼 개별 설정   */
+.btn-main{
+	margin-left : 10px;
+}
+
+/* 버튼 컨테이너 */
+.button-option{
+	/* width : 700px; */
+	margin-left : 10px;
+}
+
+
+/* 이메일 & 비밀번호 모달창 수정 */
+.form-control{
+	width : 70%;
+	display : block;
+	margin : auto;
+	margin-left : 12%;				/* 이메일,비밀번호 입력박스 위치 조정 */
+}
+
+
+
+#findPwdByEmail{
+	margin : auto;
+}
+
+/* 비밀번호찾기 모달창 버튼  */
+#findPwdBtn{
+	width: 120px;
+    margin-top: 15px;
+    margin-right: 12px;
+    font-weight : bold;
+}
+
+.form-group #emailLabel{
+	margin-right:220px;
+}
+
+.form-group #pwdLabel{
+	margin-right:220px;
+}
+
+

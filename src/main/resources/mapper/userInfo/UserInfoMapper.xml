@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hellowu.mapper.UserInfoMapper">
+	<sql id="userInfoCols">
+		UI_NAME,UI_NICKNAME,UI_EMAIL,UI_PWD,
+		UI_BIRTH,UI_ADDR1,UI_ADDR2,UI_PROFILE_IMG_PATH,UI_GOOGLE_ID,UI_NAVER_ID,UI_KAKAO_ID,UI_HOBBY
+	</sql>
+	<!-- UI_NUM은 auto_increment, UI_CREDAT은 default값 now()이기 때문에 안넣었습니다 -->
+ 	<select id="selectUserInfoByNickname" resultType="kr.co.hellowu.vo.UserInfoVO">
+ 		SELECT 
+ 			UI_NUM,<include refid="userInfoCols"></include>,UI_CREDAT
+ 		FROM
+ 			USER_INFO
+ 		WHERE
+ 			UI_NICKNAME=#{uiNickname}
+ 	</select>
+ 	
+ 	<!-- 유저 리스트 -->
+ 	<select id="selectUserInfoList" resultType="kr.co.hellowu.vo.UserInfoVO">
+ 		SELECT 
+ 			UI_NICKNAME,UI_EMAIL,UI_ADDR1,UI_PROFILE_IMG_PATH
+ 		FROM
+ 			USER_INFO
+ 	</select>
+ 	
+ 	<select id="selectUserInfoByEmail" resultType="kr.co.hellowu.vo.UserInfoVO">
+ 		SELECT 
+ 			UI_NUM,<include refid="userInfoCols"></include>,UI_CREDAT
+ 		FROM
+ 			USER_INFO
+ 		WHERE
+ 			UI_EMAIL=#{uiEmail}
+ 	</select>
+ 	
+ 	<select id="selectSomeInfoByNickname" resultType="kr.co.hellowu.vo.UserInfoVO">
+ 		SELECT 
+ 			UI_NICKNAME,UI_HOBBY,UI_PROFILE_IMG_PATH,UI_ADDR1,UI_NUM
+ 		FROM
+ 			USER_INFO
+ 		WHERE
+ 			UI_NICKNAME=#{uiNickname}
+ 	</select>
+ 	
+ 	<select id="selectUserInfoByKakaoId"  resultType="kr.co.hellowu.vo.UserInfoVO">
+ 		SELECT 
+ 			UI_NUM,<include refid="userInfoCols"></include>,UI_CREDAT
+ 		FROM
+ 			USER_INFO
+ 		WHERE
+ 			UI_KAKAO_ID= #{uiKakaoId}
+ 	</select>
+ 	
+ 	<select id="selectUserInfoByNaverId"  resultType="kr.co.hellowu.vo.UserInfoVO">
+ 		SELECT 
+ 			UI_NUM,<include refid="userInfoCols"></include>,UI_CREDAT
+ 		FROM
+ 			USER_INFO
+ 		WHERE
+ 			UI_NAVER_ID= #{uiNaverId}
+ 	</select>
+ 	
+ 	<select id="selectUserInfoByGoogleId"  resultType="kr.co.hellowu.vo.UserInfoVO">
+ 		SELECT 
+ 			UI_NUM,<include refid="userInfoCols"></include>,UI_CREDAT
+ 		FROM
+ 			USER_INFO
+ 		WHERE
+ 			UI_GOOGLE_ID= #{uiGoogleId}
+ 	</select>
+ 
+  <insert id="insertUserInfo">
+  	INSERT INTO 
+  		USER_INFO
+  	(<include refid="userInfoCols"></include>)
+  	VALUES 
+  		(#{uiName},#{uiNickname},#{uiEmail},#{uiPwd},
+  		#{uiBirth},#{uiAddr1},#{uiAddr2},#{uiProfileImgPath},#{uiGoogleId},#{uiNaverId},#{uiKakaoId}, #{uiHobby})
+  </insert>
+  <update id="updateUserPwdByEmailAndCode">
+  	UPDATE
+  		USER_INFO UI
+  	JOIN
+  		EMAIL_CODE EC 
+  	ON
+  		UI.UI_EMAIL = EC.EC_EMAIL
+  	SET
+  		UI.UI_PWD=#{uiPwd}
+  	WHERE
+  		EC.EC_EMAIL=#{emailCodeVO.ecEmail}
+  	AND
+  		EC.EC_CODE=#{emailCodeVO.ecCode}
+  	AND
+  		EC.EC_ISSUE_CODE=#{emailCodeVO.ecIssueCode}
+  </update>
+  <update id="updateUserInfo">
+  	UPDATE
+  		USER_INFO
+  	SET
+  		UI_NICKNAME=#{uiNickname},
+  		UI_PWD=#{uiPwd},
+  		UI_BIRTH=#{uiBirth},
+  		UI_ADDR1=#{uiAddr1},
+  		UI_ADDR2=#{uiAddr2},
+  		UI_PROFILE_IMG_PATH=#{uiProfileImgPath},
+  		UI_HOBBY=#{uiHobby}
+  	WHERE
+  		UI_EMAIL=#{uiEmail}
+  	AND
+  		UI_NAME=#{uiName}
+  </update>
+  <delete id="deleteUserInfo">
+  	DELETE FROM
+  		USER_INFO
+  	WHERE
+  		UI_NUM=#{uiNum}
+  	AND
+  		UI_NAME=#{uiName}
+  	AND
+  		UI_EMAIL=#{uiEmail}
+  	AND
+  		UI_PWD=#{uiPwd}
+  </delete>
+  
+  
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hellowu.mapper.BoardRecommendMapper">
+<select id="selectBoardRecommendValue" resultType="map"> 
+		SELECT 
+			${body.NUM},UI_NICKNAME,${body.VALUE}
+		FROM
+			${body.TABLENAME}
+		WHERE
+			${body.NUM} = #{param.num}
+		AND
+			UI_NICKNAME = #{param.nickname}
+	</select> 
+	<insert id="setBoardRecommendDefaultValue">   
+		INSERT INTO
+			${body.TABLENAME}
+			(${body.NUM},UI_NICKNAME)
+		VALUES
+			(#{param.num},#{param.nickname})
+	</insert>
+	<update id="updateBoardRecommendValue"> 
+		UPDATE 
+			${body.TABLENAME}
+		SET 
+			${body.VALUE} = ${body.VALUE} + ${value}
+		WHERE
+			${body.NUM} = #{param.num}
+		AND
+			UI_NICKNAME = #{param.nickname}
+	</update>
+	</mapper>

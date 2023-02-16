@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<!-- Appenders -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%d{HH:mm:ss}] [%-4level] %logger.%method:%line - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<!-- sysout쓰면 FILE 이거 안먹음 -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>C:/java-works/logs/Log.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+									<!-- 한 파일에 로그 다 쌓이지않게 날짜별로 저장 -->
+			<fileNamePattern>C:/java-works/logs/Log.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory> 
+			<!-- 30일 이전거는 다 지움 -->
+		</rollingPolicy>
+ 
+		<encoder>
+			<pattern>[%d{HH:mm:ss}] [%-4level] %logger.%method:%line - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<!-- logback의 구성을 외울 필요는 없다 어떻게 작동하는지는 알아야 -->
+	<!-- 패키지별로 레벨을 설정하고 싶을 때 사용 -->
+	<logger name="kr.co.hellowu" level="debug"/>
+	<logger name="jdbc" level="off"></logger>
+	<logger name="jdbc.sqlonly" level="off"></logger>
+	<logger name="jdbc.sqltiming" level="info"></logger>
+	<logger name="jdbc.audit" level="off"></logger>
+	<logger name="jdbc.resultset" level="off"></logger>	
+	<logger name="jdbc.resultsettable" level="on"></logger>
+	<logger name="jdbc.connection" level="off"></logger>
+	
+	<!--  logback, scheduler(cron), web crawling(Jsoup)배움 -->
+	<!-- level="off" 로그를 아예 안찍겠다 info는 [INFO] 찍는애만 나옴 debug는 [DEBUG],[INFO] 등.. 레벨이 all에 가까울수록 많이 나오고 멀수록 적게나옴
+	log4j level fatal,error는 거의 안하고 info,debug 자주 씀. 개발할때는 log.debug -->
+	<root level="info"> <!-- dafault info -->
+	<!-- 여기에다가 로그를 찍겠다 -->
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+	</root>
+
+</configuration>

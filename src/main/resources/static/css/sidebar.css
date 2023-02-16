@@ -1,0 +1,184 @@
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Nanum+Brush+Script&family=Poor+Story&display=swap');
+
+@font-face {
+    font-family: Amatic-bold;
+    src: url("/font/Amatic-Bold.ttf");
+}
+/* amatic sc bold */
+body {
+	
+	/* font-family: 'Roboto', sans-serif; */
+	/* 배경색 변경 필요 */
+	background-color : white;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	/* overflow: hidden; hidden일시 스크롤이 생기지 않음 */
+	
+}
+
+/* sidebar start */
+main {
+ /*  display: flex;
+  flex-wrap: nowrap; */
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  margin: -17px 0px 0 -8px;
+  
+  
+}
+
+/* 최상단 ID 부분 */
+#uiInfo{
+	font-family: 'Poor Story', cursive;
+	font-size : 16px;
+}
+
+.navbar{
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  
+}
+
+
+.bi {
+  vertical-align: -.125em;
+  pointer-events: none;
+  fill: currentColor;
+  background-color: red;
+}
+
+.dropdown-toggle { outline: 0; }
+
+.nav-flush .nav-link {
+  border-radius: 0;
+}
+
+.btn-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: .25rem .5rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, .65);
+  background-color: transparent;
+  border: 0;
+  
+}
+/*.btn-toggle:hover,
+.btn-toggle:focus {
+  color: rgba(0, 0, 0, .85);
+  background-color: #ddd;
+}*/
+
+.btn-toggle::before {
+  width: 1.25em;
+  line-height: 0;
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  transition: transform .35s ease;
+  transform-origin: .5em 50%;
+}
+
+.btn-toggle[aria-expanded="true"] {
+  color: rgba(0, 0, 0, .85);
+}
+.btn-toggle[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+.scrollarea {
+  overflow-y: auto;
+}
+
+.fw-semibold { font-weight: 600; }
+.lh-tight { line-height: 1.25; }
+/* sidebar end */
+
+#dark_mode {
+	position : fixed;
+	padding: 10px 10px 10px 10px;
+	border-radius: 10px;
+	bottom : 10px;
+	right : 10px;
+	z-index:999;
+	
+	
+	
+	
+}
+
+#light_mode {
+	width: 28px;
+	height: 55px
+}
+
+
+svg {
+	cursor: pointer;
+	width: 50px;
+	height: 50px
+}
+
+#uiInfo{
+	text-align: right;
+	margin-bottom : 15px;
+	
+}
+
+/* 상단 로그인 버튼 설정 */
+#login{
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+
+#logout{
+	margin-left: 10px;
+	color:white;
+	margin-bottom: 10px;
+}
+
+.dropdown-menu{
+  --bs-dropdown-link-active-bg: #a4b6d1!important;
+  --bs-dropdown-link-active-color:none;
+}
+
+.btn-primary{
+	color: white!important;
+}
+
+#realtime { /* 실시간 알림 div */
+	position: fixed;
+	font-size: 1rem;
+	bottom: 10px;
+	left : 10px;
+	z-index : 999;
+	text-align: left;
+}
+
+
+.border-2 {
+    --bs-border-width: 5px;
+}
+
+
+/* 네비게이션 바 드랍다운 했을 때 나오는 메뉴리스트 색상 조절 + 다크모드랑도 관련있음 */
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+    clear: both;
+    font-weight: 400;
+    --bs-dropdown-link-color: #025ab3;				/*#025ab3; 91bfed */
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}

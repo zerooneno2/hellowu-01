@@ -1,0 +1,66 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '2.7.7' // 여기에 2.7.7 붙으면 안붙은 디펜던시에 다 붙여줍니다
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies { // 의존성 추가
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
+	
+	// log4jdbc -> mybatis 동작할때 콘솔창에 log찍어주는 라이브러리입니다
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.12'
+	// 스프링부트는 기본적으로 JSP를 지양하기 때문에 MVC패턴에서 view를 .html대신에 .jsp파일을 쓸거면 이것을 추가해줘야 합니다
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	// JSP에서 JSTL 쓰기위해 추가해줘야 합니다
+  	implementation 'javax.servlet:jstl'
+  	// 이메일 인증보낼때 쓰는 라이브러리입니다
+  	implementation 'org.springframework.boot:spring-boot-starter-mail'
+  	
+  	// Spring AOP and AspectJ
+	implementation 'org.springframework.boot:spring-boot-starter-aop:2.7.7'
+  	
+  	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	implementation 'com.google.code.gson:gson:2.9.1'
+  	
+  	// https://mvnrepository.com/artifact/commons-io/commons-io
+	implementation 'commons-io:commons-io:2.11.0'
+  	// 스프링 시큐리티
+  	//implementation 'org.springframework.security:spring-security-core:5.7.5'
+  	//implementation 'org.springframework.security:spring-security-web:5.7.5'
+  	//implementation 'org.springframework.security:spring-security-config:5.7.5'
+  	
+  	implementation 'org.apache.httpcomponents:httpcore:4.4.15'
+	// REST API를 자바에서 호출하기위해!
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+	
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hellowu.mapper.TableMapper">
+  <insert id="createTable" parameterType="map">
+  	${createTable}
+  </insert>
+  <select id="checkTableCreated" resultType="map" parameterType="map">
+  	SELECT 
+			COLUMN_NAME 
+		FROM 
+			INFORMATION_SCHEMA.COLUMNS 
+		WHERE
+			TABLE_NAME = #{tableName}
+  </select>
+  <select id="selectBoardRequestList" resultType="kr.co.hellowu.vo.BoardRequestVO">
+  	SELECT
+  		BR_NUM,UI_NICKNAME,BR_BOARD_KOR_NAME,BR_BOARD_ENG_NAME,
+  		BR_WHAT_FOR,BR_CATEGORY,BR_COMMENT,BR_CREDAT
+  	FROM
+  		BOARD_REQUEST
+  </select>
+  <insert id="insertBoardRequest">
+  	INSERT INTO
+  		BOARD_REQUEST
+  		(UI_NICKNAME,BR_BOARD_KOR_NAME,BR_BOARD_ENG_NAME,BR_WHAT_FOR,BR_CATEGORY,BR_COMMENT)
+  	VALUES
+  		(#{uiNickname},#{brBoardKorName},#{brBoardEngName},#{brWhatFor},#{brCategory},#{brComment})
+  </insert>
+  <delete id="deleteBoardRequest">
+  	DELETE FROM
+  		BOARD_REQUEST
+  	WHERE
+  		BR_NUM=#{brNum}
+  </delete>
+  
+  <select id="getMyEveryPost" resultType="map">
+  		SELECT
+  			*
+  		FROM
+  			${table}
+  		WHERE
+  			UI_NICKNAME = #{nickname}	
+  		AND 
+  			${active} = 1
+  </select>
+  <select id="getBoardList" resultType="map">
+  	SELECT
+  		*
+  	FROM
+  		${body.TABLE}
+  	WHERE
+  		${body.ACTIVE} = '1'
+  	ORDER BY
+  		${body.RECOMMEND} DESC
+  	LIMIT 5
+  </select>
+  	
+</mapper>

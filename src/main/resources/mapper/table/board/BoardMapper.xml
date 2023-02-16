@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hellowu.mapper.BoardMapper">
+	<select id="selectBoardList" resultType="map" parameterType="map"> 
+	SELECT 
+		B.${body.NUM}, B.${body.NICKNAME}, B.${body.CONTENT}, B.${body.ADDR1}, B.${body.CATEGORY}, 
+		B.${body.TITLE}, B.${body.CREDAT}, B.${body.MODDAT}, B.${body.CNT}, B.${body.RECOMMEND},COUNT(CASE WHEN C.${body.COMMENT_ACTIVE} = 1 THEN 1 ELSE NULL END) COMMENT_COUNT
+	FROM 
+		${body.TABLENAME} B
+	LEFT JOIN
+		${body.COMMENT_TABLENAME} C
+	ON B.${body.NUM} = C.${body.NUM}
+	<where>
+		${body.ACTIVE} = 1 
+		
+		<if test=' param.title neq null and param.title neq "" '>
+    		AND B.${body.TITLE} LIKE CONCAT('%',#{param.title},'%')
+    	</if>
+    	
+    	<if test = 'param.nickname neq null and param.nickname neq "" '>
+    		AND B.${body.NICKNAME} LIKE CONCAT('%',#{param.nickname},'%')
+    	</if>
+    	
+    	<if test = ' param.content neq null and param.content neq ""'>
+    		OR B.${body.CONTENT} LIKE CONCAT('%',#{param.content},'%')
+    	</if>
+    	
+    	<if test = ' param.addr1 neq null and param.addr1 neq "" '>
+    		AND B.${body.ADDR1} LIKE CONCAT('%',#{param.addr1},'%')
+    	</if> 
+ 
+    	<choose>
+    	<when test=' param.category eq "인기글" '>
+    		AND B.${body.RECOMMEND} >= 1
+    	</when>
+    	<when test=' param.category neq null '>
+	    	AND B.${body.CATEGORY} = #{param.category}
+	    </when>
+	    </choose>
+
+	</where>
+	GROUP BY
+		B.${body.NUM}
+    ORDER BY
+    	B.${body.CATEGORY} = '공지사항' DESC, B.${body.NUM} DESC
+    LIMIT
+    	15 OFFSET ${param.nowPage} <!-- LIMIT ${param.nowPage},15 와 같다 -->
+	</select>
+	
+	
+	<select id="totalViewCnt" resultType="int" parameterType="map"> <!-- 게시물 갯수 -->
+  	SELECT 
+  		COUNT(1)
+  	FROM
+  		${body.TABLENAME}
+  	<where>
+		${body.ACTIVE}=1
+		<if test=' param.title neq null and param.title neq "" '>
+    		AND ${body.TITLE} LIKE CONCAT('%',#{param.title},'%')
+    	</if>
+    	
+    	<if test = 'param.nickname neq null and param.nickname neq "" '>
+    		AND ${body.NICKNAME} LIKE CONCAT('%',#{param.nickname},'%')
+    	</if>
+    	
+    	<if test = ' param.content neq null and param.content neq ""'>
+    		AND ${body.CONTENT} LIKE CONCAT('%',#{param.content},'%')
+    	</if>
+    	
+    	<if test = ' param.addr1 neq null and param.addr1 neq "" '>
+    		AND ${body.ADDR1} LIKE CONCAT('%',#{param.addr1},'%')
+    	</if> 
+    	
+    	
+    	<choose>
+    	<when test=' param.category eq "인기글" '>
+    		AND ${body.RECOMMEND} >= 1
+    	</when>
+    	<when test=' param.category neq null and param.category neq "" '>
+	    	AND ${body.CATEGORY} = #{param.category}
+	    </when>
+	    </choose>
+    	</where>
+  	</select>
+  	
+  	<insert id="insertBoard" parameterType="map">
+		INSERT INTO 
+			${body.TABLENAME}
+			(${body.NICKNAME}, ${body.ADDR1}, ${body.CATEGORY}, ${body.TITLE}, ${body.CONTENT})
+		VALUES
+			(#{param.nickname}, #{param.addr}, #{param.category}, #{param.title}, #{param.content})
+	</insert>
+  	<select id="selectBoard" parameterType="map" resultType="map">
+  		SELECT 	
+  			${body.NUM}, ${body.NICKNAME}, ${body.CONTENT}, ${body.ADDR1}, ${body.CATEGORY}, 
+			${body.TITLE},${body.CREDAT}, ${body.CNT}, ${body.RECOMMEND}, DATE_FORMAT(${body.MODDAT},'%Y-%m-%d %H:%i:%s') ${body.MODDAT}
+		FROM
+			${body.TABLENAME}
+		WHERE
+			${body.NUM} = #{boardNum}
+  	</select>
+  	<update id="updateBoard">
+  		UPDATE
+  			${body.TABLENAME}
+  		SET
+  			${body.TITLE} = #{param.title},
+  			${body.CATEGORY} = #{param.category},
+  			${body.CONTENT} = #{param.content}
+  		WHERE
+  			${body.NUM} = #{param.num}
+  		AND
+  			UI_NICKNAME = #{param.nickname}
+  			
+  	</update>
+  	
+  	<update id="updateBoardActive">
+  		UPDATE
+  			${body.TABLENAME}
+  		SET
+  			${body.ACTIVE} = 0
+  		WHERE
+  			${body.NUM} = #{param.num}
+  		AND
+  			${body.NICKNAME} = #{param.nickname}
+  	</update>
+  	
+  	<update id="increaseBoardViewCnt"> <!-- 조회수 -->
+  		UPDATE
+  			${body.TABLENAME}
+  		SET
+  			${body.CNT} = ${body.CNT} + 1
+  		WHERE
+  			${body.NUM} = #{boardNum}
+  	</update>
+  	
+  	<update id="recommendBoard"> <!-- 추천 -->
+		UPDATE 
+			${body.TABLENAME} 
+		SET
+			${body.RECOMMEND} = ${body.RECOMMEND} + 1
+		WHERE 
+			${body.NUM} = #{boardNum}
+	</update>
+	
+	<update id="disRecommendBoard"><!-- 비추천 -->
+		UPDATE 
+			${body.TABLENAME} 
+		SET
+			${body.RECOMMEND} = ${body.RECOMMEND} - 1
+		WHERE 
+			${body.NUM} = #{boardNum}
+	</update> 
+	
+	<select id="getPrevPost" resultType="map"> <!--이전글 보기 -->
+		SELECT
+			${body.NUM},${body.TITLE}
+		FROM 
+			${body.TABLENAME} 
+		WHERE 
+			${body.ACTIVE} = 1
+		AND 
+			${body.NUM} = (
+				SELECT 
+					${body.NUM} 
+				FROM 
+					${body.TABLENAME} 
+				WHERE 
+					${body.NUM} &lt; #{boardNum} ORDER BY ${body.NUM} DESC LIMIT 1)
+  	</select>
+  	
+  	<select id="getNextPost" resultType="map"> <!--다음글 보기 -->
+		SELECT
+			${body.NUM},${body.TITLE}
+		FROM 
+			${body.TABLENAME} 
+		WHERE 
+			${body.ACTIVE} = 1
+		AND 
+			${body.NUM} = (
+				SELECT 
+					${body.NUM} 
+				FROM 
+					${body.TABLENAME} 
+				WHERE 
+					${body.NUM} &gt; #{boardNum} ORDER BY ${body.NUM} LIMIT 1)
+  	</select>
+  	
+  	
+  	
+</mapper>

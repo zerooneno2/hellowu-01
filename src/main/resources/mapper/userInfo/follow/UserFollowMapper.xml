@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.hellowu.mapper.UserFollowMapper">
+	<select id="countFollowers" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			USER_FOLLOW
+		WHERE
+			UI_FOLLOWING_NUM = #{uiFollowingNum}
+	</select>
+	<select id="countFollowing" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			USER_FOLLOW
+		WHERE
+		UI_FOLLOWER_NUM = #{uiFollowerNum}
+	</select>
+	<insert id="insertFollow">
+		INSERT INTO
+			USER_FOLLOW
+			(UI_FOLLOWER_NUM,UI_FOLLOWING_NUM)
+		VALUES
+			(#{uiFollowerNum},#{uiFollowingNum})
+	</insert>
+	<delete id="deleteFollow">
+		DELETE FROM
+			USER_FOLLOW
+		WHERE
+			UI_FOLLOWER_NUM = #{uiFollowerNum}
+		AND
+			UI_FOLLOWING_NUM = #{uiFollowingNum}
+	</delete>
+	<select id="selectFollowingUser"
+		resultType="kr.co.hellowu.vo.UserFollowVO"> <!-- 내가 추가한 유저 -->
+		SELECT
+			UI.UI_NUM, UI.UI_NICKNAME, UI.UI_PROFILE_IMG_PATH, UI.UI_ADDR1, UI.UI_HOBBY
+		FROM
+			USER_INFO UI
+		JOIN
+			USER_FOLLOW UF
+		ON
+			UF.UI_FOLLOWING_NUM = UI.UI_NUM
+		WHERE
+			UF.UI_FOLLOWER_NUM = #{uiNum}
+	</select>
+	<select id="selectFollowUser"
+		resultType="kr.co.hellowu.vo.UserFollowVO"> <!-- 나를 추가한 유저 -->
+		SELECT
+			UI.UI_NUM, UI.UI_NICKNAME, UI.UI_PROFILE_IMG_PATH, UI.UI_ADDR1, UI.UI_HOBBY
+		FROM
+			USER_INFO UI
+		JOIN
+			USER_FOLLOW UF
+		ON
+			UF.UI_FOLLOWER_NUM = UI.UI_NUM
+		WHERE
+			UF.UI_FOLLOWING_NUM = #{uiNum}
+	</select>
+	<select id="selectIsFollowed" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			USER_FOLLOW
+		WHERE
+			UI_FOLLOWER_NUM = #{uiFollowerNum}
+		AND
+			UI_FOLLOWING_NUM = #{uiFollowingNum}
+	</select>
+</mapper>

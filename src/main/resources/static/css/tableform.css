@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Nanum+Brush+Script&family=Poor+Story&display=swap');
+
+
+/* 테이블의 틀 & 폰트 등의 변경  */
+.table {
+	/* font-size : 15px; */
+	/* font-style : italic; */
+	style="display:inline"
+	font-size : 25px;
+	font-family: 'Poor Story', cursive;
+}
+
+.nav-item{
+	font-family: 'Poor Story', cursive;
+}
+
+#search-write-Div {
+	
+}
+#searchDiv{
+	min-width: 467px;
+}
+#writeDiv {
+	
+}
+
+main {
+
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  margin: -17px 0px 0 -8px;
+}
+
+.container {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#dropdown {
+	margin-bottom : 4px;
+}
+
+/* span {
+	font-size : 30px;
+	white-space:nowrap;
+	
+} */
+
+
+.container{
+	font-family: 'Poor Story', cursive;
+}
+
+a{
+	font-family: 'Poor Story', cursive;
+}
+

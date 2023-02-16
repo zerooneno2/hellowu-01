@@ -1,0 +1,186 @@
+
+
+#emailModal.modal-overlay {
+	width: 31%;
+	height: 34%;
+	margin-left: 35%;
+	margin-top: 20%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(1.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	justify-content: space-around;
+	
+}
+
+#emailModal #close-area {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	cursor: pointer;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+#emailModal .modal-window {
+	
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(13.5px);
+	-webkit-backdrop-filter: blur(13.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	width: 300px;
+	height: 150px;
+	position: relative;
+	top:50px;
+	padding: 10px;
+	
+}
+
+#addressModal.modal-overlay {
+	width: 11%;
+	height: 14%;
+	margin-left: 44.5%;
+	margin-top: 20%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(3px);
+	-webkit-backdrop-filter: blur(1.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+
+#addressModal .content {
+	margin-top: 20px;
+	padding: 0px 10px;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+
+
+#map {
+	width: 100%;
+	height: 100%;
+	
+	left: 0;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(3px);
+	-webkit-backdrop-filter: blur(1.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#addressModal #close-area {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	cursor: pointer;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+#addressModal .modal-window {
+	
+	/* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+	backdrop-filter: blur(13.5px);
+	-webkit-backdrop-filter: blur(13.5px);
+	border-radius: 10px;
+	/* border: 1px solid rgba(255, 255, 255, 0.18); */
+	width: 400px;
+	height: 500px;
+	position: relative;
+	top:100px;
+	padding: 10px;
+}
+
+
+
+
+
+#addressModal .content {
+	margin-top: 20px;
+	padding: 0px 10px;
+	text-shadow: 1px 1px 2px gray;
+	color: white;
+}
+
+.form-group label{
+	
+	text-align: center;
+	text-indent: 140px;
+}
+
+ 
+/* .form-group #uiNameLabel{
+	margin-left : -230px;
+	float: left;
+    margin-top: -21px;
+    margin-left: 37px;
+    
+}
+
+
+.form-group #uiNicknameLabel{
+	float: left;
+    margin-top: -21px;
+    margin-left: 37px;
+}
+
+.form-group #uiEmailLabel{
+	float: left;
+    margin-top: -21px;
+    margin-left: 37px;
+}
+
+.form-group #uiPwdLabel{
+	float: left;
+    margin-top: -21px;
+    margin-left: 37px;
+}
+
+.form-group #detailaddr{
+	margin-left : -220px;
+}
+
+.form-group #uiHobbyLabel{
+	margin-right : 240px;
+	float: left;
+    margin-top: -21px;
+    margin-left: 37px;
+}
+
+.form-group #uiBirthLabel{
+	float: left;
+    margin-top: -21px;
+    margin-left: 37px;
+}
+
+.fa-solid{
+	float:right;
+	margin-left: -150px;
+}  */
